@@ -1,17 +1,27 @@
 import { Center, Image, Text } from "@mantine/core";
 
 interface FeedCardProps {
-  user: string;
-  partySize: string;
+  title: string;
+  partySize: number;
 }
 
 export default function FeedCard(props: FeedCardProps) {
-  const { user, partySize } = props;
+  const { title, partySize } = props;
+  const position = [
+    { top: 64, left: 31 },
+    { top: 127, left: 7 },
+    { top: 191, left: 29 },
+    { top: 236, left: 79 },
+    { top: 236, left: 163 },
+    { top: 191, left: 224 },
+    { top: 127, left: 242 },
+    { top: 64, left: 224 },
+  ];
   return (
     <div
       style={{
-        width: "180px",
-        height: "180px",
+        width: "303px",
+        height: "303px",
         display: "flex",
         backgroundColor: "rgba(255, 255, 255, 0.1)",
         alignItems: "center",
@@ -21,14 +31,39 @@ export default function FeedCard(props: FeedCardProps) {
         gap: "20px",
         // background: "linear-gradient(80deg, #F5CAC3 17.71%, #8760F6 99.48%)",
         textAlign: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        padding: "35px",
+        position: "relative",
       }}
     >
-      <Text color="white" size="md" weight={700} style={{ lineHeight: "1px" }}>
-        {user}
+      <Text
+        color="white"
+        size="md"
+        weight={700}
+        style={{
+          fontWeight: 700,
+          fontSize: "20px",
+          lineHeight: "20px",
+          textAlign: "center",
+          letterSpacing: "0.155em",
+        }}
+      >
+        {title}
       </Text>
-      <Text color="white" size="xs" weight={100} style={{ lineHeight: "1px" }}>
-        {partySize}
+      <Text
+        color="white"
+        size="xs"
+        weight={100}
+        style={{
+          fontWeight: 500,
+          fontSize: "14px",
+          lineHeight: "18px",
+          textAlign: "center",
+          letterSpacing: "0.155em",
+          marginTop: "-15px",
+        }}
+      >
+        {partySize} peoples
       </Text>
       <div style={{ display: "flex", overflow: "hidden", borderRadius: "50%" }}>
         <Image
@@ -37,6 +72,19 @@ export default function FeedCard(props: FeedCardProps) {
           src="https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"
           alt="With default placeholder"
         />
+      </div>
+      <div>
+        {position.map((pos, index) => {
+          return (
+            <Image
+              height={50}
+              width={50}
+              style={{ left: pos.left, top: pos.top, position: "absolute" }}
+              src="https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"
+              alt="With default placeholder"
+            />
+          );
+        })}
       </div>
     </div>
   );

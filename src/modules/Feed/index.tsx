@@ -3,11 +3,11 @@ import FeedCard from "./components/FeedCard";
 
 export default function FeedPage() {
   const datas = [
-    { title: "Valorant", desc: "5 people" },
-    { title: "Apex Legends", desc: "4 people" },
-    { title: "Hai di lao", desc: "4 people" },
-    { title: "Dating", desc: "2 people" },
-    { title: "Trip Chula", desc: "10 people" },
+    { title: "Valorant", partySize: 5 },
+    { title: "Apex Legends", partySize: 4 },
+    { title: "Hai di lao", partySize: 4 },
+    { title: "Dating", partySize: 2 },
+    { title: "Trip Chula", partySize: 10 },
   ];
   const postdatas = [
     {
@@ -41,7 +41,9 @@ export default function FeedPage() {
         }}
       >
         {datas.map((data, inx) => {
-          return <FeedCard key={inx} user={data.title} partySize={data.desc} />;
+          return (
+            <FeedCard key={inx} title={data.title} partySize={data.partySize} />
+          );
         })}
         {postdatas.map((data, inx) => {
           return (

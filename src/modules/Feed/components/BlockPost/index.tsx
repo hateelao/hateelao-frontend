@@ -10,18 +10,25 @@ export default function BlockPost(props: BlockPostProps) {
   return (
     <div
       style={{
-        width: "303px",
+        width: "90%",
+        maxWidth: "450px",
         alignSelf: "center",
         display: "flex",
         backgroundColor: "white",
         borderRadius: "12px",
         flexDirection: "column",
         boxShadow: "0px 3px 5px 3px rgb(0 0 0 / 20%)",
-        padding: "10px",
-        gap: "20px",
+        padding: "20px 20px",
+        gap: "8px",
       }}
     >
-      <div style={{ flexDirection: "row", paddingTop: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
         <div
           style={{
             width: "30px",
@@ -29,7 +36,6 @@ export default function BlockPost(props: BlockPostProps) {
             display: "flex",
             overflow: "hidden",
             borderRadius: "50%",
-            backgroundColor: "red",
           }}
         >
           <Image
@@ -42,13 +48,29 @@ export default function BlockPost(props: BlockPostProps) {
         <Text
           size="md"
           weight={700}
-          style={{ lineHeight: "1px", paddingLeft: "45px" }}
+          style={{
+            paddingLeft: "8px",
+            fontWeight: 700,
+            fontSize: "16px",
+            lineHeight: "20px",
+            textAlign: "center",
+          }}
         >
           {user}
         </Text>
       </div>
 
-      <Text size="xs" weight={100}>
+      <Text
+        size="xs"
+        weight={100}
+        style={{
+          paddingLeft: "38px",
+          textAlign: "justify",
+          fontWeight: 400,
+          fontSize: "12px",
+          lineHeight: "15px",
+        }}
+      >
         {status}
       </Text>
     </div>

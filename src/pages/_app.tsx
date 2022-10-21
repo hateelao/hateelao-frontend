@@ -1,10 +1,15 @@
 import "../../styles/globals.css";
 import type { AppProps } from "next/app";
 import NavBar from "../modules/NavBar";
+import { MantineProvider } from "@mantine/core";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <MantineProvider
+      theme={{
+        fontFamily: "Dosis",
+      }}
+    >
       <NavBar />
       <div
         style={{
@@ -18,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       >
         <Component {...pageProps} />
       </div>
-    </>
+    </MantineProvider>
   );
 }
 
