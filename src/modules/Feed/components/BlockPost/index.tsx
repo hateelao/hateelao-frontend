@@ -3,9 +3,10 @@ import { Image } from "@mantine/core";
 interface BlockPostProps {
   user: string;
   status: string;
+  source: string;
 }
 export default function BlockPost(props: BlockPostProps) {
-  const { user, status } = props;
+  const { user, status, source } = props;
   return (
     <div
       style={{
@@ -13,36 +14,43 @@ export default function BlockPost(props: BlockPostProps) {
         alignSelf: "center",
         display: "flex",
         backgroundColor: "white",
-        // alignItems: "center",
-        flexDirection: "column",
         borderRadius: "12px",
+        flexDirection: "column",
         boxShadow: "0px 3px 5px 3px rgb(0 0 0 / 20%)",
-        padding: "28px",
-        // paddingTop: "100px",
+        padding: "10px",
         gap: "20px",
       }}
     >
-      <>
-        <div>
+      <div style={{ flexDirection: "row", paddingTop: "10px" }}>
+        <div
+          style={{
+            width: "30px",
+            height: "30px",
+            display: "flex",
+            overflow: "hidden",
+            borderRadius: "50%",
+            backgroundColor: "red",
+          }}
+        >
           <Image
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              objectFit: "cover",
-            }}
-            src="https://media.gq-magazine.co.uk/photos/63468efef4f48bee2acb7062/master/pass/Tom-Holland-Spiderman-what-we-know-so-far.jpg"
+            height={30}
+            width={30}
+            src={source}
+            alt="With default placeholder"
           ></Image>
         </div>
-
-        <Text size="md" weight={700}>
+        <Text
+          size="md"
+          weight={700}
+          style={{ lineHeight: "1px", paddingLeft: "45px" }}
+        >
           {user}
         </Text>
-        <Text size="xs" weight={100}>
-          {status}
-        </Text>
-      </>
+      </div>
+
+      <Text size="xs" weight={100}>
+        {status}
+      </Text>
     </div>
   );
 }

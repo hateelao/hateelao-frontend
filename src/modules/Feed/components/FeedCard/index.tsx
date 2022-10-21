@@ -1,10 +1,9 @@
-import { Center, Text } from "@mantine/core";
+import { Center, Image, Text } from "@mantine/core";
 
 interface FeedCardProps {
   user: string;
   partySize: string;
 }
-import { Image } from "@mantine/core";
 
 export default function FeedCard(props: FeedCardProps) {
   const { user, partySize } = props;
@@ -31,22 +30,12 @@ export default function FeedCard(props: FeedCardProps) {
       <Text color="white" size="xs" weight={100} style={{ lineHeight: "1px" }}>
         {partySize}
       </Text>
-      <div
-        style={{
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          // position: "relative",
-          backgroundColor: "red",
-        }}
-      >
+      <div style={{ display: "flex", overflow: "hidden", borderRadius: "50%" }}>
         <Image
-          // style={{ objectFit: "cover" }}
-          // radius="md"
-          src="https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+          height={50}
+          width={50}
+          src="https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"
           alt="With default placeholder"
-          // fit="cover"
         />
       </div>
     </div>
