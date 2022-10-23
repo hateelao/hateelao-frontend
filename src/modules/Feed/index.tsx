@@ -1,5 +1,6 @@
 import BlockPost from "./components/BlockPost";
 import FeedCard from "./components/FeedCard";
+import NewPost from "./components/NewPost";
 
 export default function FeedPage() {
   const datas = [
@@ -40,6 +41,7 @@ export default function FeedPage() {
           gap: "20px",
         }}
       >
+        <NewPost></NewPost>
         {datas.map((data, inx) => {
           return (
             <FeedCard key={inx} title={data.title} partySize={data.partySize} />
