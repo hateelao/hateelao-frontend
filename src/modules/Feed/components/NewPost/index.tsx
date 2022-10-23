@@ -8,7 +8,10 @@ import {
 
 export default function NewPost() {
   const [expand, setExpand] = useState(true);
+  const [value, setValue] = useState(1);
   const partyname = "Ling";
+  const backgroundColor = "#2B4076";
+  const border = "1px solid #FDEBEB";
   return (
     <div
       style={{
@@ -29,6 +32,7 @@ export default function NewPost() {
           alignItems: "center",
           justifyContent: "center",
           paddingTop: "24px",
+          paddingBottom: "4px",
           paddingLeft: "31px",
         }}
       >
@@ -95,8 +99,8 @@ export default function NewPost() {
           style={{
             display: "flex",
             width: "100%",
-            height: "100%",
-            paddingTop: "20px",
+            height: "80px",
+            paddingTop: "5px",
             flexDirection: "column",
             alignItems: "center",
           }}
@@ -126,7 +130,9 @@ export default function NewPost() {
               alignItems: "center",
             }}
           >
-            <ActionIcon>
+            <ActionIcon
+              onClick={() => setValue(value - 1 >= 1 ? value - 1 : 1)}
+            >
               <AiFillMinusCircle
                 style={{
                   display: "flex",
@@ -137,6 +143,8 @@ export default function NewPost() {
             </ActionIcon>
 
             <Slider
+              value={value}
+              onChange={setValue}
               style={{
                 width: "165px",
                 height: "3px",
@@ -158,7 +166,9 @@ export default function NewPost() {
                 { value: 8, label: "8" },
               ]}
             />
-            <ActionIcon>
+            <ActionIcon
+              onClick={() => setValue(value + 1 <= 8 ? value + 1 : 8)}
+            >
               <AiFillPlusCircle
                 style={{
                   width: "10px",
@@ -168,27 +178,85 @@ export default function NewPost() {
             </ActionIcon>
           </div>
         </div>
+        {/* <div style={{ display: "flex", flexDirection: "column" }}>
+          <Text
+            style={{
+              display: "flex",
+              width: "35px",
+              height: "18px",
+              justifyContent: "center",
+              position: "absolute",
+              top: "107px",
+              paddingLeft: "39px",
+              fontFamily: "Dosis",
+              fontStyle: "normal",
+              fontWeight: "600",
+              fontSize: "14px",
+              lineHeight: "18px",
+              letterSpacing: "0.155em",
+              color: "#FFFFFF",
+            }}
+          >
+            Type
+          </Text>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <Button
+              style={{
+                display: "flex",
+                width: "80px",
+                height: "15px",
+                justifyContent: "center",
+                backgroundColor: "#2B4076",
+                border: "1px solid #FDEBEB",
+                borderRadius: "20px",
+              }}
+            >
+              tee game
+            </Button>
+            <Button
+              style={{
+                display: "flex",
+                width: "80px",
+                height: "15px",
+                justifyContent: "center",
+                backgroundColor: "#2B4076",
+                border: "1px solid #FDEBEB",
+                borderRadius: "20px",
+              }}
+            >
+              tee tiaw
+            </Button>
+          </div>
 
-        <Text
-          style={{
-            display: "flex",
-            width: "35px",
-            height: "18px",
-            justifyContent: "center",
-            position: "absolute",
-            top: "107px",
-            paddingLeft: "39px",
-            fontFamily: "Dosis",
-            fontStyle: "normal",
-            fontWeight: "600",
-            fontSize: "14px",
-            lineHeight: "18px",
-            letterSpacing: "0.155em",
-            color: "#FFFFFF",
-          }}
-        >
-          Type
-        </Text>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <Button
+              style={{
+                display: "flex",
+                width: "80px",
+                height: "15px",
+                justifyContent: "center",
+                backgroundColor: "#2B4076",
+                border: "1px solid #FDEBEB",
+                borderRadius: "20px",
+              }}
+            >
+              tee hit
+            </Button>
+            <Button
+              style={{
+                display: "flex",
+                width: "80px",
+                height: "15px",
+                justifyContent: "center",
+                backgroundColor: "#2B4076",
+                border: "1px solid #FDEBEB",
+                borderRadius: "20px",
+              }}
+            >
+              tee r-han
+            </Button>
+          </div>
+        </div> */}
 
         <div style={{ flexDirection: "row", gap: "80px" }}>
           <Button
