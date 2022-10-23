@@ -32,7 +32,7 @@ export default function FeedCard(props: FeedCardProps) {
         gap: "20px",
         // background: "linear-gradient(80deg, #F5CAC3 17.71%, #8760F6 99.48%)",
         textAlign: "center",
-        top: "139px",
+        // top: "139px",
         justifyContent: "flex-start",
         padding: "25px",
         position: "relative",
