@@ -11,7 +11,7 @@ export default function BlockPost(props: BlockPostProps) {
     <div
       style={{
         width: "90%",
-        maxWidth: "450px",
+        maxWidth: "303px",
         alignSelf: "center",
         display: "flex",
         backgroundColor: "white",

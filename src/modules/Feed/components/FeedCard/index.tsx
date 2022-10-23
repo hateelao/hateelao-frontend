@@ -7,6 +7,12 @@ interface FeedCardProps {
 
 export default function FeedCard(props: FeedCardProps) {
   const { title, partySize } = props;
+  // const position4 = [
+  //   { top: 72, left: 8 },
+  //   { top: 125, left: 34 },
+  //   { top: 125, left: 111 },
+  //   { top: 137, left: 72 },
+  // ];
   const position = [
     { top: 64, left: 31 },
     { top: 127, left: 7 },
@@ -17,10 +23,21 @@ export default function FeedCard(props: FeedCardProps) {
     { top: 127, left: 242 },
     { top: 64, left: 224 },
   ];
+  const select = [
+    [1],
+    [1, 7],
+    [1, 3, 7],
+    [1, 2, 6, 7],
+    [0, 2, 4, 6, 7],
+    [0, 1, 2, 6, 7, 7],
+    [0, 1, 2, 4, 6, 7, 7],
+    [0, 1, 2, 3, 5, 6, 7, 7],
+  ];
+  const scale = partySize / 8 + 0.2;
   return (
     <div
       style={{
-        // transform: "scale(0.5)",
+        transform: `scale(${scale})`,
         width: "303px",
         height: "303px",
         display: "flex",
@@ -83,7 +100,7 @@ export default function FeedCard(props: FeedCardProps) {
         />
       </div>
       <div>
-        {position.map((pos, index) => {
+        {select[partySize - 2].map((i, index) => {
           return (
             <Image
               height={50}
@@ -92,8 +109,8 @@ export default function FeedCard(props: FeedCardProps) {
               style={{
                 borderRadius: "50%",
                 overflow: "hidden",
-                left: pos.left,
-                top: pos.top,
+                left: position[i].left,
+                top: position[i].top,
                 position: "absolute",
               }}
               src="https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec"

@@ -1,17 +1,33 @@
-import { ActionIcon, Button, Slider, Text } from "@mantine/core";
-import { useState } from "react";
+import { ActionIcon, Button, Slider, Text, TextInput } from "@mantine/core";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   AiFillMinusCircle,
   AiFillPlusCircle,
   AiOutlinePlus,
 } from "react-icons/ai";
 
+interface NewPostProps {
+  title: string;
+  value: number;
+}
 export default function NewPost() {
   const [expand, setExpand] = useState(true);
   const [value, setValue] = useState(1);
-  const partyname = "Ling";
+  const [title, setTitle] = useState("");
   const backgroundColor = "#2B4076";
   const border = "1px solid #FDEBEB";
+
+  async function handleNewPost() {
+    if (title) {
+      setExpand(!expand);
+      await axios.post("https://hateelao-api.up.railway.app/posts", {
+        title: title,
+        partySize: value,
+        ownerId: "63555d28c9ad0bf839dcbf87",
+      });
+    }
+  }
   return (
     <div
       style={{
@@ -79,22 +95,20 @@ export default function NewPost() {
           flexDirection: "column",
         }}
       >
-        <Text
-          style={{
-            width: "254px",
-            height: "50px",
-            paddingLeft: "25px",
-            fontFamily: "Dosis",
-            fontStyle: "normal",
-            fontWeight: "600",
-            fontSize: "25px",
-            lineHeight: "32px",
-            letterSpacing: "0.155em",
-            color: "white",
+        <TextInput
+          placeholder="Party Name"
+          variant="unstyled"
+          radius="xl"
+          value={title}
+          onChange={(event) => setTitle(event.currentTarget.value)}
+          sx={{
+            padding: "10px",
+            ".mantine-TextInput-input": {
+              color: "white",
+              display: "flex",
+            },
           }}
-        >
-          {partyname}
-        </Text>
+        />
         <div
           style={{
             display: "flex",
@@ -149,14 +163,14 @@ export default function NewPost() {
                 width: "165px",
                 height: "3px",
               }}
+              sx={{ thumb: ".mantine-Slider-label" }}
               thumbSize={14}
-              min={1}
-              max={8}
+              min={2}
+              max={9}
               color="pink"
               size="sm"
               showLabelOnHover={false}
               marks={[
-                { value: 1, label: "1" },
                 { value: 2, label: "2" },
                 { value: 3, label: "3" },
                 { value: 4, label: "4" },
@@ -164,6 +178,7 @@ export default function NewPost() {
                 { value: 6, label: "6" },
                 { value: 7, label: "7" },
                 { value: 8, label: "8" },
+                { value: 9, label: "9" },
               ]}
             />
             <ActionIcon
@@ -257,10 +272,9 @@ export default function NewPost() {
             </Button>
           </div>
         </div> */}
-
         <div style={{ flexDirection: "row", gap: "80px" }}>
           <Button
-            onClick={() => setExpand(!expand)}
+            onClick={handleNewPost}
             style={{
               display: "flex",
               position: "absolute",
