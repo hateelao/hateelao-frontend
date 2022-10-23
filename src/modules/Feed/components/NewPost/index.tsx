@@ -133,7 +133,7 @@ export default function NewPost() {
               color: "white",
             }}
           >
-            Member
+            Party Size
           </Text>
 
           <div
@@ -145,7 +145,7 @@ export default function NewPost() {
             }}
           >
             <ActionIcon
-              onClick={() => setValue(value - 1 >= 1 ? value - 1 : 1)}
+              onClick={() => setValue(value - 1 >= 2 ? value - 1 : 2)}
             >
               <AiFillMinusCircle
                 style={{
@@ -182,7 +182,7 @@ export default function NewPost() {
               ]}
             />
             <ActionIcon
-              onClick={() => setValue(value + 1 <= 8 ? value + 1 : 8)}
+              onClick={() => setValue(value + 1 <= 9 ? value + 1 : 9)}
             >
               <AiFillPlusCircle
                 style={{

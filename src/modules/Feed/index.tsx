@@ -1,35 +1,14 @@
-import BlockPost from "./components/BlockPost";
+import BlockPost from "../Lobby/BlockPost";
 import FeedCard from "./components/FeedCard";
 import NewPost from "./components/NewPost";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { PostDTO } from "./types";
 
 enum Status {
   ONWER,
   MEMBERED,
   INVITED,
-}
-interface User {
-  userID: string;
-  displayName: string;
-  photoURL: string;
-  firebaseID: string;
-}
-interface PostDTO {
-  postId: string;
-  title: string;
-  partySize: number;
-  users: [
-    {
-      status: Status;
-      user: {
-        userId: string;
-        displayName: string;
-        photoURL: string;
-        firebaseId: string;
-      };
-    }
-  ];
 }
 export default function FeedPage() {
   const [data, setData] = useState<PostDTO[]>([]);
@@ -83,14 +62,8 @@ export default function FeedPage() {
         }}
       >
         <NewPost></NewPost>
-        {data.map((datai, inx) => {
-          return (
-            <FeedCard
-              key={inx}
-              title={datai.title}
-              partySize={datai.partySize}
-            />
-          );
+        {data.map((post, inx) => {
+          return <FeedCard key={inx} post={post} />;
         })}
       </div>
     </>

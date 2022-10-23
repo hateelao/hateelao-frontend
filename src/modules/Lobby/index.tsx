@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import BlockPost from "../Feed/components/BlockPost";
+import BlockPost from "./BlockPost";
 import FeedCard from "../Feed/components/FeedCard";
 import { TbSend } from "react-icons/tb";
 
