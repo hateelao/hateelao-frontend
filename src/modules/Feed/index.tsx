@@ -51,8 +51,8 @@ export default function FeedPage() {
           return (
             <BlockPost
               key={inx}
-              user={data.user}
-              status={data.desc}
+              title={data.user}
+              desc={data.desc}
               source={data.src}
             />
           );
