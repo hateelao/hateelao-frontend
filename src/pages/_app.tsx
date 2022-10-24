@@ -2,6 +2,7 @@ import "../../styles/globals.css";
 import type { AppProps } from "next/app";
 import NavBar from "../modules/NavBar";
 import { MantineProvider } from "@mantine/core";
+import { AuthPage } from "../modules/AuthPage";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         fontFamily: "Dosis",
       }}
     >
+      {/* <AuthPage></AuthPage> */}
       <NavBar />
       <div
         style={{
