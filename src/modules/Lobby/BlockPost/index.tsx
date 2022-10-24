@@ -1,17 +1,17 @@
 import { Text } from "@mantine/core";
 import { Image } from "@mantine/core";
 interface BlockPostProps {
-  user: string;
-  status: string;
+  title: string;
+  desc: string;
   source: string;
 }
 export default function BlockPost(props: BlockPostProps) {
-  const { user, status, source } = props;
+  const { title, desc, source } = props;
   return (
     <div
       style={{
         width: "90%",
-        maxWidth: "450px",
+        maxWidth: "303px",
         alignSelf: "center",
         display: "flex",
         backgroundColor: "white",
@@ -56,7 +56,7 @@ export default function BlockPost(props: BlockPostProps) {
             textAlign: "center",
           }}
         >
-          {user}
+          {title}
         </Text>
       </div>
 
@@ -71,7 +71,7 @@ export default function BlockPost(props: BlockPostProps) {
           lineHeight: "15px",
         }}
       >
-        {status}
+        {desc}
       </Text>
     </div>
   );

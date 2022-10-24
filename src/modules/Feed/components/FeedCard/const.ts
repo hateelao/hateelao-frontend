@@ -1,0 +1,52 @@
+export const position = [
+  [{ top: 127, left: 243 }],
+  [
+    { top: 127, left: 10 },
+    { top: 127, left: 243 },
+  ],
+  [
+    { top: 102, left: 13 },
+    { top: 243, left: 127 },
+    { top: 102, left: 240 },
+  ],
+  [
+    { top: 68, left: 25 },
+    { top: 208, left: 45 },
+    { top: 208, left: 208 },
+    { top: 68, left: 226 },
+  ],
+  [
+    { top: 68, left: 25 },
+    { top: 188, left: 25 },
+    { top: 243, left: 127 },
+    { top: 188, left: 226 },
+    { top: 68, left: 226 },
+  ],
+  [
+    { top: 74, left: 22 },
+    { top: 159, left: 16 },
+    { top: 231, left: 78 },
+    { top: 231, left: 177 },
+    { top: 159, left: 238 },
+    { top: 74, left: 230 },
+  ],
+  [
+    { top: 68, left: 25 },
+    { top: 145, left: 12 },
+    { top: 215, left: 52 },
+    { top: 243, left: 127 },
+    { top: 215, left: 201 },
+    { top: 145, left: 240 },
+    { top: 68, left: 226 },
+  ],
+  [
+    { top: 64, left: 31 },
+    { top: 127, left: 7 },
+    { top: 191, left: 29 },
+    { top: 236, left: 79 },
+    { top: 236, left: 163 },
+    { top: 191, left: 224 },
+    { top: 127, left: 242 },
+    { top: 64, left: 224 },
+  ],
+];
