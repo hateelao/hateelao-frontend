@@ -1,6 +1,7 @@
 import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { auth } from "../../config/firebase-config";
+import { IconBrandGoogle, IconBrandFacebook } from "@tabler/icons";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -41,11 +42,6 @@ export function AuthPage(props: PaperProps) {
           : null,
     },
   });
-
-  // const [user, setUser] = useState({});
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setUser(currentUser);
-  // });
 
   const register = async () => {
     try {
@@ -156,6 +152,10 @@ export function AuthPage(props: PaperProps) {
               : "Don't have an account? Register"}
           </Anchor>
           <Button type="submit">{upperFirst(type)}</Button>
+        </Group>
+
+        <Group grow mb="md" mt="md">
+          <IconBrandGoogle />
         </Group>
       </form>
     </Paper>
