@@ -1,17 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: env.FIREBASE_API_KEY,
-  authDomain: env.FIREBASE_AUTH_DOMAIN,
-  projectId: env.FIREBASE_PROJECT_ID,
-  storageBucket: env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.FIREBASE_APP_ID,
+  apiKey: "AIzaSyCwVwG055fB66XTJwquGpFXTC7HgGpcfoM",
+  authDomain: "hateelao-auth.firebaseapp.com",
+  projectId: "hateelao-auth",
+  storageBucket: "hateelao-auth.appspot.com",
+  messagingSenderId: "947496918968",
+  appId: "1:947496918968:web:02aab058acaf5fffd2394d",
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 export const auth = getAuth(app);
