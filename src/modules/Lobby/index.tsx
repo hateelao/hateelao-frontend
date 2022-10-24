@@ -4,7 +4,7 @@ import {
   Center,
   Image,
   Text,
-  TextInput,
+  TextInput
 } from "@mantine/core";
 import BlockPost from "./BlockPost";
 import FeedCard from "../Feed/components/FeedCard";
@@ -20,7 +20,7 @@ export default function Lobby() {
         alignItems: "center",
         flexDirection: "column",
         paddingTop: "20px",
-        gap: "20px",
+        gap: "20px"
       }}
     >
       <Text
@@ -28,7 +28,7 @@ export default function Lobby() {
           fontWeight: 700,
           fontSize: "27px",
           lineHeight: "34px",
-          color: "#FFFFFF",
+          color: "#FFFFFF"
         }}
       >
         Lobby
@@ -37,7 +37,7 @@ export default function Lobby() {
         style={{
           flexDirection: "row",
           display: "flex",
-          alignItems: "flex-end",
+          alignItems: "flex-end"
         }}
       >
         <TextInput
@@ -52,7 +52,7 @@ export default function Lobby() {
               fontWeight: 600,
               fontSize: "12px",
               lineHeight: "155%",
-              color: "#FFFFFF",
+              color: "#FFFFFF"
             },
             ".mantine-TextInput-input": {
               // fontWeight: 600,
@@ -61,8 +61,8 @@ export default function Lobby() {
               color: "white",
               backgroundColor: "rgba(255, 255, 255, 0)",
               width: "279px",
-              height: "30px",
-            },
+              height: "30px"
+            }
           }}
         />
         <Button
@@ -75,7 +75,7 @@ export default function Lobby() {
           copy
         </Button>
       </div>
-      <FeedCard title={"TEE-NOI"} partySize={8}></FeedCard>
+      {/* <FeedCard title={"TEE-NOI"} partySize={8}></FeedCard> */}
       <BlockPost
         title={"MaStEr"}
         desc={"Valo"}
@@ -106,7 +106,7 @@ export default function Lobby() {
         style={{
           flexDirection: "row",
           display: "flex",
-          alignItems: "center",
+          alignItems: "center"
         }}
       >
         <TextInput
@@ -114,14 +114,14 @@ export default function Lobby() {
           radius="lg"
           style={{
             height: "33px",
-            width: "303px",
+            width: "303px"
           }}
           sx={{
             ".mantine-TextInput-label": {
               fontWeight: 600,
               fontSize: "12px",
               lineHeight: "155%",
-              color: "#FFFFFF",
+              color: "#FFFFFF"
             },
             ".mantine-TextInput-input": {
               // fontWeight: 600,
@@ -130,14 +130,14 @@ export default function Lobby() {
               color: "white",
               backgroundColor: "rgba(255, 255, 255, 0)",
               width: "279px",
-              height: "30px",
+              height: "30px"
             },
             ".mantine-TextInput-root": {
-              color: "white",
+              color: "white"
             },
             "	.mantine-TextInput-wrapper": {
-              width: "279px",
-            },
+              width: "279px"
+            }
           }}
           rightSection={
             <ActionIcon
@@ -147,7 +147,7 @@ export default function Lobby() {
                 marginBottom: "4px",
                 marginTop: "5px",
                 marginRight: "5px",
-                color: "white",
+                color: "white"
               }}
             >
               <TbSend size={20} />
