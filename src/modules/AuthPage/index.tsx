@@ -2,10 +2,15 @@ import { useToggle, upperFirst } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
 import { auth } from "../../config/firebase-config";
 import { IconBrandGoogle, IconBrandFacebook } from "@tabler/icons";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
+  getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { useState } from "react";
@@ -23,9 +28,16 @@ import {
   Anchor,
   Stack,
 } from "@mantine/core";
+import { useStyles } from "./styles";
+import { FirebaseError } from "firebase/app";
 
 export function AuthPage(props: PaperProps) {
   const [type, toggle] = useToggle(["login", "register"]);
+  const { classes } = useStyles();
+  const facebookProvider = new FacebookAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+
+  // const navigate = useNavigate();
   const form = useForm({
     initialValues: {
       email: "",
@@ -63,8 +75,10 @@ export function AuthPage(props: PaperProps) {
         form.values.email,
         form.values.password
       );
+
       console.log("Login");
       console.log(user);
+      // navigate("/home");
     } catch (err) {
       console.log(err);
     }
@@ -80,15 +94,31 @@ export function AuthPage(props: PaperProps) {
     await signOut(auth);
   };
 
+  const facebookLogin = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        const user = result.user;
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+
+        // ...
+      });
+  };
+
   return (
     <Paper radius="md" p="xl" withBorder {...props}>
       <Text size="lg" weight={500}>
-        Welcome to Mantine, {type} with
+        {type == "login" ? "Login" : "Register"}
       </Text>
 
       <Group grow mb="md" mt="md"></Group>
 
-      <Divider label="Or continue with email" labelPosition="center" my="lg" />
+      {/* <Divider label="Or continue with email" labelPosition="center" my="lg" /> */}
 
       <form onSubmit={form.onSubmit(loginOrRegister)}>
         <Stack>
@@ -155,7 +185,14 @@ export function AuthPage(props: PaperProps) {
         </Group>
 
         <Group grow mb="md" mt="md">
-          <IconBrandGoogle />
+          {/* <IconBrandGoogle
+            className={classes.brandButton}
+            onClick={facebookLogin}
+          /> */}
+          <IconBrandFacebook
+            className={classes.brandButton}
+            onClick={facebookLogin}
+          />
         </Group>
       </form>
     </Paper>
