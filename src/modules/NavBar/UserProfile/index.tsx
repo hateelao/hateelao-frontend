@@ -75,7 +75,13 @@ function UserProfile(props: UserProfileProps) {
         </div>
       ) : (
         <div>
-          <Button component="a" href="/auth">
+          <Button
+            component="a"
+            href="/auth"
+            style={{
+              backgroundColor: "transparent",
+            }}
+          >
             Sign In
           </Button>
         </div>

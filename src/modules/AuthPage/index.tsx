@@ -12,6 +12,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { Fragment, useState } from "react";
 
@@ -45,6 +46,7 @@ export function AuthPage(props: PaperProps) {
       email: "",
       name: "",
       password: "",
+      photoURL: "",
       terms: true,
     },
 
@@ -64,9 +66,16 @@ export function AuthPage(props: PaperProps) {
         form.values.email,
         form.values.password
       );
-      // console.log("Create New User");
+
+      if (auth.currentUser)
+        updateProfile(auth.currentUser, {
+          displayName: form.values.name,
+          photoURL: form.values.photoURL,
+        });
+
+      location.href = "/";
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
@@ -150,18 +159,14 @@ export function AuthPage(props: PaperProps) {
         {...props}
         style={{
           marginTop: "20px",
-          // marginTop: type == "login" ? "-30px" : "-50px",
         }}
       >
-        {/* <Group grow mb="md" mt="md"></Group> */}
-
-        {/* <Divider label="Or continue with email" labelPosition="center" my="lg" /> */}
-
         <form onSubmit={form.onSubmit(loginOrRegister)}>
           <Stack>
             {type === "register" && (
               <TextInput
-                label="Name"
+                required
+                label="Display Name"
                 placeholder="Your name"
                 value={form.values.name}
                 onChange={(event) =>
@@ -173,7 +178,7 @@ export function AuthPage(props: PaperProps) {
             <TextInput
               required
               label="Email"
-              placeholder="hello@mantine.dev"
+              placeholder="example@gmail.com"
               value={form.values.email}
               onChange={(event) =>
                 form.setFieldValue("email", event.currentTarget.value)
@@ -191,9 +196,20 @@ export function AuthPage(props: PaperProps) {
               }
               error={
                 form.errors.password &&
-                "Password should include at least 6 characters"
+                "Password should include at least 7 characters"
               }
             />
+            {type === "register" && (
+              <TextInput
+                required
+                label="PhotoURL"
+                placeholder="Your photoURL"
+                value={form.values.photoURL}
+                onChange={(event) =>
+                  form.setFieldValue("photoURL", event.currentTarget.value)
+                }
+              />
+            )}
 
             {type === "register" && (
               <Checkbox
