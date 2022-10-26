@@ -6,6 +6,7 @@ import React from "react";
 import UserProfile from "./UserProfile";
 import { auth } from "../../config/firebase-config";
 import axios from "axios";
+import Link from "next/link";
 
 export interface userDTO {
   displayName: string;
@@ -62,7 +63,7 @@ export default function NavBar() {
           backgroundColor: "#5a5a84",
         }}
       >
-        <a href="/">Explore</a>
+        <Link href="/">Explore</Link>
       </Button>
       <Button
         style={{
@@ -70,7 +71,7 @@ export default function NavBar() {
           backgroundColor: "#5a5a84",
         }}
       >
-        <a href="/dashboard">Dashboard</a>
+        <Link href="/dashboard">Dashboard</Link>
       </Button>
       <div
         style={{
