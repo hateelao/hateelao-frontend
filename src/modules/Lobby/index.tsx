@@ -52,14 +52,8 @@ export default function Lobby(props: LobbyProps) {
     chat: [],
     status: "NOT_JOINED",
   });
-  const [join, setJoin] = useState(false);
-  const [expand, setExpand] = useState(true);
-  const [content, setContent] = useState("");
-
   const [inviteLink, setInviteLink] = useState("");
-
   const { post, chat, status } = data;
-
   const [firebaseId, setFirebaseId] = useState("");
   auth.onAuthStateChanged((user) => {
     if (user) setFirebaseId(user.uid);
@@ -69,13 +63,13 @@ export default function Lobby(props: LobbyProps) {
     if (firebaseId != "") firebaseRoute = `/${firebaseId}`;
     const res = await axios.get(
       `https://hateelao-api.up.railway.app/lobbies/${postId}${firebaseRoute}`
-      // `https://hateelao-api.up.railway.app/lobbies/${postId}/acoolfirebaseid`
     );
     console.log(res.data);
     setData(res.data);
   };
   useEffect(() => {
     if (postId != "undefined") loadData();
+    setInviteLink("localhost:3000/invite/" + postId);
   }, [postId, firebaseId]);
 
   async function handleNewMember() {
@@ -158,20 +152,6 @@ export default function Lobby(props: LobbyProps) {
             </Button>
           )}
         </CopyButton>
-
-        {/* <Button
-          color="gray"
-          radius="lg"
-          size="lg"
-          compact
-          style={{
-            display: status == "JOINED" ? "flex" : "none",
-            marginBottom: "4px",
-            marginLeft: "20px",
-          }}
-        >
-          copy
-        </Button> */}
       </div>
 
       <FeedCard post={post} isLobby></FeedCard>
