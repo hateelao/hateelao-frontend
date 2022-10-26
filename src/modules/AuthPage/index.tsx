@@ -102,6 +102,7 @@ export function AuthPage(props: PaperProps) {
       .then((result) => {
         const user = result.user;
         const credential = FacebookAuthProvider.credentialFromResult(result);
+        location.href = "/";
       })
       .catch((error) => {
         // Handle Errors here.
@@ -118,6 +119,7 @@ export function AuthPage(props: PaperProps) {
       .then((result) => {
         const user = result.user;
         const credential = GoogleAuthProvider.credentialFromResult(result);
+        location.href = "/";
       })
       .catch((error) => {
         // Handle Errors here.
@@ -234,15 +236,12 @@ export function AuthPage(props: PaperProps) {
               marginBottom: "-10px",
             }}
           >
-            Or
+            OR
           </Text>
           <Group grow mb="md" mt="md">
             <IconBrandGoogle
               className={classes.brandButton}
               onClick={googleLogin}
-              style={{
-                marginRight: "-120px",
-              }}
             />
             <IconBrandFacebook
               className={classes.brandButton}
