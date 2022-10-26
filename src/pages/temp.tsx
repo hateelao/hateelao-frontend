@@ -4,11 +4,8 @@ import FeedPage from "../modules/Feed";
 
 const Home2: NextPage = () => {
   const user = auth.currentUser;
-  console.log(user);
-    return (
-        <h1>Test</h1>
-        
-  );
+  // console.log(user);
+  return <h1>Test</h1>;
 };
 
 export default Home2;

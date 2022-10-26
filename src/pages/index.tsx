@@ -4,7 +4,7 @@ import FeedPage from "../modules/Feed";
 
 const Home: NextPage = () => {
   auth.onAuthStateChanged((user) => {
-    console.log(user);
+    // console.log(user);
   });
   return <FeedPage></FeedPage>;
 };
