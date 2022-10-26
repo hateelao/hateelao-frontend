@@ -4,10 +4,9 @@ import { TbScale } from "react-icons/tb";
 export const useStyles = createStyles((theme) => ({
   brandButton: {
     marginTop: "20px",
-    marginLeft: "auto",
-    marginRight: "auto",
     marginBottom: "-10px",
     cursor: "pointer",
+    width: "30px",
   },
   facebookButton: {},
   googleButton: {},
