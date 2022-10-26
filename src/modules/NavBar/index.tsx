@@ -3,9 +3,38 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { ActionIcon, Button } from "@mantine/core";
 import { Image } from "@mantine/core";
 import React from "react";
+import UserProfile from "./UserProfile";
+import { auth } from "../../config/firebase-config";
+import axios from "axios";
+
+export interface userDTO {
+  displayName: string;
+  photoURL: string;
+}
 
 export default function NavBar() {
   const [expand, setExpand] = useState(true);
+  const [user, setUser] = useState<userDTO>({
+    displayName: "",
+    photoURL: "",
+  });
+  auth.onAuthStateChanged((user2) => {
+    // const uid = user2 ? user2.uid : "";
+    if (user2) {
+      const loadData = async () => {
+        const uid = "635388d46b0b1c31c6bbd114";
+        const res = await axios.get(
+          `https://hateelao-api.up.railway.app/users/${uid}`
+        );
+        setUser(res.data);
+      };
+      if (user.displayName == "") {
+        loadData();
+      }
+    }
+  });
+  console.log(user);
+
   return (
     <div
       style={{
@@ -67,6 +96,7 @@ export default function NavBar() {
       >
         <Image width={42} height={42} src="/hateelaoLogo.png" alt="Logo" />
       </div>
+      <UserProfile user={user} />
     </div>
   );
 }
