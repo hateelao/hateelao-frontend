@@ -13,7 +13,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import {
   TextInput,
@@ -27,9 +27,11 @@ import {
   Checkbox,
   Anchor,
   Stack,
+  Center,
 } from "@mantine/core";
 import { useStyles } from "./styles";
 import { FirebaseError } from "firebase/app";
+import { formatWithOptions } from "util";
 
 export function AuthPage(props: PaperProps) {
   const [type, toggle] = useToggle(["login", "register"]);
@@ -78,6 +80,7 @@ export function AuthPage(props: PaperProps) {
 
       console.log("Login");
       console.log(user);
+      location.href = "/";
       // navigate("/home");
     } catch (err) {
       console.log(err);
@@ -110,91 +113,144 @@ export function AuthPage(props: PaperProps) {
       });
   };
 
+  const googleLogin = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+
+        // ...
+      });
+  };
   return (
-    <Paper radius="md" p="xl" withBorder {...props}>
-      <Text size="lg" weight={500}>
+    <div className={classes.mainDiv}>
+      <Text
+        size="lg"
+        weight={700}
+        align="center"
+        className={classes.loginText}
+        style={{
+          marginTop: type == "login" ? "-100px" : "0px",
+        }}
+      >
         {type == "login" ? "Login" : "Register"}
       </Text>
+      <Paper
+        radius="md"
+        p="lg"
+        withBorder
+        {...props}
+        style={{
+          marginTop: "20px",
+          // marginTop: type == "login" ? "-30px" : "-50px",
+        }}
+      >
+        {/* <Group grow mb="md" mt="md"></Group> */}
 
-      <Group grow mb="md" mt="md"></Group>
+        {/* <Divider label="Or continue with email" labelPosition="center" my="lg" /> */}
 
-      {/* <Divider label="Or continue with email" labelPosition="center" my="lg" /> */}
+        <form onSubmit={form.onSubmit(loginOrRegister)}>
+          <Stack>
+            {type === "register" && (
+              <TextInput
+                label="Name"
+                placeholder="Your name"
+                value={form.values.name}
+                onChange={(event) =>
+                  form.setFieldValue("name", event.currentTarget.value)
+                }
+              />
+            )}
 
-      <form onSubmit={form.onSubmit(loginOrRegister)}>
-        <Stack>
-          {type === "register" && (
             <TextInput
-              label="Name"
-              placeholder="Your name"
-              value={form.values.name}
+              required
+              label="Email"
+              placeholder="hello@mantine.dev"
+              value={form.values.email}
               onChange={(event) =>
-                form.setFieldValue("name", event.currentTarget.value)
+                form.setFieldValue("email", event.currentTarget.value)
+              }
+              error={form.errors.email && "Invalid email"}
+            />
+
+            <PasswordInput
+              required
+              label="Password"
+              placeholder="Your password"
+              value={form.values.password}
+              onChange={(event) =>
+                form.setFieldValue("password", event.currentTarget.value)
+              }
+              error={
+                form.errors.password &&
+                "Password should include at least 6 characters"
               }
             />
-          )}
 
-          <TextInput
-            required
-            label="Email"
-            placeholder="hello@mantine.dev"
-            value={form.values.email}
-            onChange={(event) =>
-              form.setFieldValue("email", event.currentTarget.value)
-            }
-            error={form.errors.email && "Invalid email"}
-          />
+            {type === "register" && (
+              <Checkbox
+                label="I accept terms and conditions"
+                checked={form.values.terms}
+                onChange={(event) =>
+                  form.setFieldValue("terms", event.currentTarget.checked)
+                }
+              />
+            )}
+          </Stack>
 
-          <PasswordInput
-            required
-            label="Password"
-            placeholder="Your password"
-            value={form.values.password}
-            onChange={(event) =>
-              form.setFieldValue("password", event.currentTarget.value)
-            }
-            error={
-              form.errors.password &&
-              "Password should include at least 6 characters"
-            }
-          />
-
-          {type === "register" && (
-            <Checkbox
-              label="I accept terms and conditions"
-              checked={form.values.terms}
-              onChange={(event) =>
-                form.setFieldValue("terms", event.currentTarget.checked)
-              }
-            />
-          )}
-        </Stack>
-
-        <Group position="apart" mt="xl">
-          <Anchor
-            component="button"
-            type="button"
-            color="dimmed"
-            onClick={() => toggle()}
-            size="xs"
+          <Group position="apart" mt="xl">
+            <Anchor
+              component="button"
+              type="button"
+              color="dimmed"
+              onClick={() => toggle()}
+              size="xs"
+            >
+              {type === "register"
+                ? "Already have an account? Login"
+                : "Don't have an account? Register"}
+            </Anchor>
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: "white",
+                borderColor: "#1A1B1E",
+                color: "#1A1B1E",
+              }}
+            >
+              {upperFirst(type)}
+            </Button>
+          </Group>
+          <Text
+            align="center"
+            style={{
+              marginTop: "20px",
+              marginBottom: "-10px",
+            }}
           >
-            {type === "register"
-              ? "Already have an account? Login"
-              : "Don't have an account? Register"}
-          </Anchor>
-          <Button type="submit">{upperFirst(type)}</Button>
-        </Group>
-
-        <Group grow mb="md" mt="md">
-          {/* <IconBrandGoogle
-            className={classes.brandButton}
-            onClick={facebookLogin}
-          /> */}
-          <IconBrandFacebook
-            className={classes.brandButton}
-            onClick={facebookLogin}
-          />
-        </Group>
-      </form>
-    </Paper>
+            Or
+          </Text>
+          <Group grow mb="md" mt="md">
+            <IconBrandGoogle
+              className={classes.brandButton}
+              onClick={googleLogin}
+              style={{
+                marginRight: "-120px",
+              }}
+            />
+            <IconBrandFacebook
+              className={classes.brandButton}
+              onClick={facebookLogin}
+            />
+          </Group>
+        </form>
+      </Paper>
+    </div>
   );
 }
