@@ -13,7 +13,7 @@ interface NewPostProps {
 }
 export default function NewPost() {
   const [expand, setExpand] = useState(true);
-  const [value, setValue] = useState(1);
+  const [value, setValue] = useState(2);
   const [title, setTitle] = useState("");
   const backgroundColor = "#2B4076";
   const border = "1px solid #FDEBEB";
@@ -145,7 +145,7 @@ export default function NewPost() {
             }}
           >
             <ActionIcon
-              onClick={() => setValue(value - 1 >= 2 ? value - 1 : 2)}
+              onClick={() => setValue(value - 1 >= 0 ? value - 1 : 0)}
             >
               <AiFillMinusCircle
                 style={{
@@ -155,7 +155,29 @@ export default function NewPost() {
                 }}
               ></AiFillMinusCircle>
             </ActionIcon>
-
+            {/* <Slider
+              style={{
+                width: "165px",
+                height: "3px",
+              }}
+              marks={[
+                { value: 0, label: "2" },
+                { value: 1, label: "3" },
+                { value: 2, label: "4" },
+                { value: 3, label: "5" },
+                { value: 4, label: "6" },
+                { value: 5, label: "7" },
+                { value: 6, label: "8" },
+                { value: 7, label: "9" },
+              ]}
+              label={null}
+              min={0}
+              max={7}
+              sx={{ thumb: ".mantine-Slider-label" }}
+              thumbSize={14}
+              value={value}
+              onChange={setValue}
+            /> */}
             <Slider
               value={value}
               onChange={setValue}
@@ -163,26 +185,27 @@ export default function NewPost() {
                 width: "165px",
                 height: "3px",
               }}
+              label={null}
               sx={{ thumb: ".mantine-Slider-label" }}
               thumbSize={14}
-              min={2}
-              max={9}
+              min={0}
+              max={7}
               color="pink"
               size="sm"
               showLabelOnHover={false}
               marks={[
-                { value: 2, label: "2" },
-                { value: 3, label: "3" },
-                { value: 4, label: "4" },
-                { value: 5, label: "5" },
-                { value: 6, label: "6" },
-                { value: 7, label: "7" },
-                { value: 8, label: "8" },
-                { value: 9, label: "9" },
+                { value: 0, label: "2" },
+                { value: 1, label: "3" },
+                { value: 2, label: "4" },
+                { value: 3, label: "5" },
+                { value: 4, label: "6" },
+                { value: 5, label: "7" },
+                { value: 6, label: "8" },
+                { value: 7, label: "9" },
               ]}
             />
             <ActionIcon
-              onClick={() => setValue(value + 1 <= 9 ? value + 1 : 9)}
+              onClick={() => setValue(value + 1 <= 7 ? value + 1 : 7)}
             >
               <AiFillPlusCircle
                 style={{
