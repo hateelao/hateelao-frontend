@@ -158,6 +158,7 @@ export default function Lobby(props: LobbyProps) {
 
       {chat.map((singleChat) => (
         <BlockPost
+          key={singleChat.id}
           title={singleChat.author.displayName}
           desc={singleChat.content}
           source={singleChat.author.photoURL}
