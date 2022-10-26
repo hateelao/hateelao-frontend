@@ -33,6 +33,8 @@ import {
 import { useStyles } from "./styles";
 import { FirebaseError } from "firebase/app";
 import { formatWithOptions } from "util";
+import { appendFile } from "fs";
+import axios from "axios";
 
 export function AuthPage(props: PaperProps) {
   const [type, toggle] = useToggle(["login", "register"]);
@@ -67,11 +69,20 @@ export function AuthPage(props: PaperProps) {
         form.values.password
       );
 
-      if (auth.currentUser)
-        updateProfile(auth.currentUser, {
-          displayName: form.values.name,
-          photoURL: form.values.photoURL,
-        });
+      const newUser = {
+        displayName: form.values.name,
+        photoURL: form.values.photoURL,
+        firebaseId: user.user.uid,
+      };
+      console.log(newUser);
+      const createNewUser = async () => {
+        const res = await axios.post(
+          `https://hateelao-api.up.railway.app/users`,
+          newUser
+        );
+      };
+
+      createNewUser();
 
       location.href = "/";
     } catch (err) {
@@ -92,6 +103,7 @@ export function AuthPage(props: PaperProps) {
       location.href = "/";
       // navigate("/home");
     } catch (err) {
+      alert("Wrong username or password");
       // console.log(err);
     }
   };

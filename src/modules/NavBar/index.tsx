@@ -20,17 +20,22 @@ export default function NavBar() {
   });
   auth.onAuthStateChanged((user2: any) => {
     // const uid = user2 ? user2.uid : "";
-    if (user2) {
-      const loadData = async () => {
-        const uid = user2.uid;
-        const res = await axios.get(
-          `https://hateelao-api.up.railway.app/users/${uid}`
-        );
-        setUser(res.data);
-      };
-      if (user.displayName == "") {
-        loadData();
+    try {
+      if (user2) {
+        const loadData = async () => {
+          const uid = user2.uid;
+          const res = await axios.get(
+            `https://hateelao-api.up.railway.app/users/${uid}`
+          );
+          setUser(res.data);
+        };
+        if (user.displayName == "") {
+          setTimeout(loadData, 1000);
+          // loadData();
+        }
       }
+    } catch (err) {
+      console.log(err);
     }
   });
   // console.log(user);
