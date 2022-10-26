@@ -4,34 +4,15 @@ import { position } from "./const";
 
 interface FeedCardProps {
   post: PostDTO;
+  isLobby?: boolean;
 }
 
 export default function FeedCard(props: FeedCardProps) {
-  const { post } = props;
-  // const position = [
-  //   { top: 64, left: 31 },
-  //   { top: 127, left: 7 },
-  //   { top: 191, left: 29 },
-  //   { top: 236, left: 79 },
-  //   { top: 236, left: 163 },
-  //   { top: 191, left: 224 },
-  //   { top: 127, left: 242 },
-  //   { top: 64, left: 224 },
-  // ];
-  // const select = [
-  //   [1],
-  //   [1, 7],
-  //   [1, 3, 7],
-  //   [1, 2, 6, 7],
-  //   [0, 2, 4, 6, 7],
-  //   [0, 1, 2, 6, 7, 7],
-  //   [0, 1, 2, 4, 6, 7, 7],
-  //   [0, 1, 2, 3, 5, 6, 7, 7],
-  // ];
-  const scale = post.partySize / 8 + 0.2;
+  const { post, isLobby } = props;
+  const scale = isLobby ? 1 : post.partySize / 8 + 0.2;
   const users = post.users;
   if (users.length < post.partySize) {
-    for (let i = 0; i < post.partySize - users.length; i++) {
+    for (let i = 0; i < post.partySize - 1 - users.length; i++) {
       users.push({
         userId: "",
         displayName: "",
@@ -43,6 +24,9 @@ export default function FeedCard(props: FeedCardProps) {
   // post.users.length < post.partySize
   return (
     <div
+      onClick={() => {
+        location.href = `/lobby/${post.postId}`;
+      }}
       style={{
         transform: `scale(${scale})`,
         width: "303px",
@@ -52,14 +36,12 @@ export default function FeedCard(props: FeedCardProps) {
         alignItems: "center",
         flexDirection: "column",
         borderRadius: "50%",
-        // boxShadow: "0px 3px 5px 3px rgb(0 0 0 / 20%)",
         gap: "20px",
-        // background: "linear-gradient(80deg, #F5CAC3 17.71%, #8760F6 99.48%)",
         textAlign: "center",
-        // top: "139px",
         justifyContent: "flex-start",
         padding: "25px",
         position: "relative",
+        cursor: "pointer",
       }}
     >
       <Text
@@ -91,7 +73,13 @@ export default function FeedCard(props: FeedCardProps) {
       >
         {post.partySize} peoples
       </Text>
-      <div style={{ display: "flex", overflow: "hidden", borderRadius: "50%" }}>
+      <div
+        style={{
+          display: "flex",
+          overflow: "hidden",
+          borderRadius: "50%",
+        }}
+      >
         <Image
           height={163}
           width={163}

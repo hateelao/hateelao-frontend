@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { ActionIcon, Button } from "@mantine/core";
+import { ActionIcon, Burger, Button } from "@mantine/core";
 import { Image } from "@mantine/core";
 import React from "react";
 import UserProfile from "./UserProfile";
@@ -13,16 +13,16 @@ export interface userDTO {
 }
 
 export default function NavBar() {
-  const [expand, setExpand] = useState(true);
+  const [expand, setExpand] = useState(false);
   const [user, setUser] = useState<userDTO>({
     displayName: "",
     photoURL: "",
   });
-  auth.onAuthStateChanged((user2) => {
+  auth.onAuthStateChanged((user2: any) => {
     // const uid = user2 ? user2.uid : "";
     if (user2) {
       const loadData = async () => {
-        const uid = "635388d46b0b1c31c6bbd114";
+        const uid = user2.uid;
         const res = await axios.get(
           `https://hateelao-api.up.railway.app/users/${uid}`
         );
@@ -33,7 +33,7 @@ export default function NavBar() {
       }
     }
   });
-  console.log(user);
+  // console.log(user);
 
   return (
     <div
@@ -50,37 +50,27 @@ export default function NavBar() {
         position: "fixed",
       }}
     >
-      <ActionIcon>
-        <AiOutlineMenu
-          color="white"
-          size={42}
-          style={{
-            display: expand ? "flex" : "none",
-          }}
-          onClick={() => setExpand(false)}
-        />
-        <AiOutlineClose
-          color="white"
-          size={42}
-          style={{ display: !expand ? "flex" : "none" }}
-          onClick={() => setExpand(true)}
-        />
-      </ActionIcon>
+      <Burger
+        opened={expand}
+        color="white"
+        onClick={() => setExpand((o) => !o)}
+      />
+
       <Button
         style={{
-          display: !expand ? "flex" : "none",
+          display: expand ? "flex" : "none",
           backgroundColor: "#5a5a84",
         }}
       >
-        find party
+        <a href="/">Explore</a>
       </Button>
       <Button
         style={{
-          display: !expand ? "flex" : "none",
+          display: expand ? "flex" : "none",
           backgroundColor: "#5a5a84",
         }}
       >
-        ty lao
+        <a href="/dashboard">Dashboard</a>
       </Button>
       <div
         style={{

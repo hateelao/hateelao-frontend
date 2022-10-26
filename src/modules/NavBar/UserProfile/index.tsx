@@ -27,7 +27,7 @@ function UserProfile(props: UserProfileProps) {
       });
   };
 
-  console.log(props);
+  // console.log(props);
   return (
     <div
       style={{

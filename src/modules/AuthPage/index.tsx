@@ -64,9 +64,9 @@ export function AuthPage(props: PaperProps) {
         form.values.email,
         form.values.password
       );
-      console.log("Create New User");
+      // console.log("Create New User");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -78,12 +78,12 @@ export function AuthPage(props: PaperProps) {
         form.values.password
       );
 
-      console.log("Login");
-      console.log(user);
+      // console.log("Login");
+      // console.log(user);
       location.href = "/";
       // navigate("/home");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

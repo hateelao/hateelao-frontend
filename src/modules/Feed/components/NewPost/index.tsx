@@ -6,6 +6,7 @@ import {
   AiFillPlusCircle,
   AiOutlinePlus,
 } from "react-icons/ai";
+import { auth } from "../../../../config/firebase-config";
 
 interface NewPostProps {
   title: string;
@@ -15,16 +16,24 @@ export default function NewPost() {
   const [expand, setExpand] = useState(true);
   const [value, setValue] = useState(2);
   const [title, setTitle] = useState("");
+  const [userLogin, setUserLogin] = useState(false);
   const backgroundColor = "#2B4076";
   const border = "1px solid #FDEBEB";
 
+  auth.onAuthStateChanged((user: any) => {
+    if (user && !userLogin) {
+      // console.log("user login");
+      setUserLogin(true);
+    }
+  });
   async function handleNewPost() {
     if (title) {
+      const firebaseId = auth.currentUser?.uid;
       setExpand(!expand);
       await axios.post("https://hateelao-api.up.railway.app/posts", {
         title: title,
-        partySize: value,
-        ownerId: "63555d28c9ad0bf839dcbf87",
+        partySize: value + 2,
+        ownerId: { firebaseId },
       });
     }
   }
@@ -71,7 +80,7 @@ export default function NewPost() {
         <Button
           onClick={() => setExpand(!expand)}
           style={{
-            display: "flex",
+            display: userLogin ? "flex" : "none",
             width: "84px",
             height: "23px",
             justifyContent: "center",
