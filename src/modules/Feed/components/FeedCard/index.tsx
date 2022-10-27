@@ -60,7 +60,7 @@ export default function FeedCard(props: FeedCardProps) {
         justifyContent: "flex-start",
         padding: "25px",
         position: "relative",
-        cursor: "pointer",
+        // cursor: "pointer",
       }}
     >
       <Text
@@ -79,7 +79,8 @@ export default function FeedCard(props: FeedCardProps) {
         {() => {
           location.href = `/lobby/${post.postId}`;
         }} */}
-        <Link href={`/lobby/${post.postId}`}>{post.title}</Link>
+        {/* <Link href={`/lobby/${post.postId}`}>{post.title}</Link> */}
+        {post.title}
       </Text>
       <Text
         color="white"
@@ -104,6 +105,9 @@ export default function FeedCard(props: FeedCardProps) {
         }}
       >
         <Image
+          onClick={() => {
+            location.href = `/lobby/${post.postId}`;
+          }}
           height={163}
           width={163}
           style={{
@@ -112,6 +116,7 @@ export default function FeedCard(props: FeedCardProps) {
             left: "70px",
             top: "70px",
             position: "absolute",
+            cursor: "pointer",
           }}
           src={post.owner.photoURL}
           alt={`avatar of ${post.owner.displayName}`}

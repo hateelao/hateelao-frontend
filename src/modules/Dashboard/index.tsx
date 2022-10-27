@@ -77,9 +77,11 @@ export default function Dashboard(props: DashboardProps) {
           //fontSize: "20px",
         }}
       >
-        <Link href="/auth" style={{ color: "white" }}>
-          Please Login
-        </Link>
+        <div style={{ display: userLogin ? "none" : "flex" }}>
+          <Link href="/auth" style={{ color: "white" }}>
+            Please Login
+          </Link>
+        </div>
       </div>
     </div>
   );

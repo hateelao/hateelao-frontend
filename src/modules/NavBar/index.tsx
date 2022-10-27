@@ -10,6 +10,11 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { signOut } from "firebase/auth";
 
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: "-100%" },
+};
+
 export interface userDTO {
   displayName: string;
   photoURL: string;
@@ -64,25 +69,40 @@ export default function NavBar() {
         opened={expand}
         color="white"
         onClick={() => setExpand((o) => !o)}
+        style={{
+          // position: "absolute",
+          zIndex: 3,
+        }}
       />
+      <motion.div animate={expand ? "open" : "closed"} variants={variants}>
+        <Button
+          onClick={() => {
+            if (expand) {
+              location.href = `/`;
+            }
+          }}
+          style={{
+            // display: expand ? "flex" : "none",
+            backgroundColor: "#5a5a84",
+          }}
+        >
+          Explore
+        </Button>
+        <Button
+          onClick={() => {
+            if (expand) {
+              location.href = `/dashboard/${firebaseId}`;
+            }
+          }}
+          style={{
+            // display: expand ? "flex" : "none",
+            backgroundColor: "#5a5a84",
+          }}
+        >
+          Dashboard
+        </Button>
+      </motion.div>
 
-      <Button
-        style={{
-          display: expand ? "flex" : "none",
-          backgroundColor: "#5a5a84",
-        }}
-      >
-        <Link href="/">Explore</Link>
-      </Button>
-      <Button
-        onClick={() => (location.href = `/dashboard/${firebaseId}`)}
-        style={{
-          display: expand ? "flex" : "none",
-          backgroundColor: "#5a5a84",
-        }}
-      >
-        Dashboard
-      </Button>
       <div
         style={{
           display: expand ? "none" : "flex",
