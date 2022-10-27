@@ -85,6 +85,7 @@ export function AuthPage(props: PaperProps) {
       createNewUser();
       alert("Register Success");
       toggle();
+      setTimeout((location.href = "/"), 500);
       // location.href = "/";
     } catch (err) {
       console.log(err);

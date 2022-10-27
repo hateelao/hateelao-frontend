@@ -49,6 +49,10 @@ function UserProfile(props: UserProfileProps) {
             </Menu.Target>
 
             <Menu.Dropdown>
+              <Menu.Item>
+                <b>Hello, {props.user.displayName}!</b>
+                <br />
+              </Menu.Item>
               <Menu.Label>Application</Menu.Label>
               <Menu.Item icon={<IconSettings size={14} />}>Settings</Menu.Item>
               <Menu.Item icon={<IconMessageCircle size={14} />}>
