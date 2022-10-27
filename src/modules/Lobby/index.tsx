@@ -69,7 +69,7 @@ export default function Lobby(props: LobbyProps) {
   };
   useEffect(() => {
     if (postId != "undefined") loadData();
-    setInviteLink("localhost:3000/invite/" + postId);
+    setInviteLink("https://hateelao.netlify.app/invite/" + postId);
   }, [postId, firebaseId]);
 
   async function handleNewMember() {
