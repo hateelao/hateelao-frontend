@@ -22,6 +22,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           paddingTop: "55px",
           minHeight: "100vh",
           paddingBottom: "30px",
+          overflowX: "hidden",
         }}
       >
         <Component {...pageProps} />

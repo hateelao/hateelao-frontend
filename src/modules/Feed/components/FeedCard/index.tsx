@@ -2,6 +2,8 @@ import { Center, Image, Text } from "@mantine/core";
 import { useState } from "react";
 import { PostDTO } from "../../types";
 import { position } from "./const";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface FeedCardProps {
   post: PostDTO;
@@ -31,10 +33,19 @@ export default function FeedCard(props: FeedCardProps) {
   }
   // post.users.length < post.partySize
   return (
-    <div
-      onClick={() => {
-        location.href = `/lobby/${post.postId}`;
+    <motion.div
+      drag
+      dragConstraints={{
+        top: -300,
+        left: -300,
+        right: 300,
+        bottom: 300,
       }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ opacity: 0, x: -100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
       style={{
         transform: `scale(${scale})`,
         width: "303px",
@@ -64,7 +75,11 @@ export default function FeedCard(props: FeedCardProps) {
           letterSpacing: "0.155em",
         }}
       >
-        {post.title}
+        {/* onClick=
+        {() => {
+          location.href = `/lobby/${post.postId}`;
+        }} */}
+        <Link href={`/lobby/${post.postId}`}>{post.title}</Link>
       </Text>
       <Text
         color="white"
@@ -138,6 +153,6 @@ export default function FeedCard(props: FeedCardProps) {
           );
         })}
       </div> */}
-    </div>
+    </motion.div>
   );
 }

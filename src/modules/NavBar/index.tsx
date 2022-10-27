@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile";
 import { auth } from "../../config/firebase-config";
 import axios from "axios";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export interface userDTO {
   displayName: string;
