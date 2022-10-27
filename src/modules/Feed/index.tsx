@@ -36,7 +36,7 @@ export default function FeedPage() {
       >
         <NewPost></NewPost>
         {data.map((post, inx) => {
-          return <FeedCard key={inx} post={post} />;
+          return <FeedCard key={inx} post={post} isLobby />;
         })}
       </div>
     </>

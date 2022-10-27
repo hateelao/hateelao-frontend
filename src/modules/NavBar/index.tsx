@@ -15,6 +15,7 @@ export interface userDTO {
 
 export default function NavBar() {
   const [expand, setExpand] = useState(false);
+  const firebaseId = auth.currentUser?.uid;
   const [user, setUser] = useState<userDTO>({
     displayName: "",
     photoURL: "",
@@ -66,12 +67,13 @@ export default function NavBar() {
         <Link href="/">Explore</Link>
       </Button>
       <Button
+        onClick={() => (location.href = `/dashboard/${firebaseId}`)}
         style={{
           display: expand ? "flex" : "none",
           backgroundColor: "#5a5a84",
         }}
       >
-        <Link href="/dashboard">Dashboard</Link>
+        Dashboard
       </Button>
       <div
         style={{

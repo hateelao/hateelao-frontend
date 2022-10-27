@@ -17,8 +17,6 @@ export default function NewPost() {
   const [value, setValue] = useState(2);
   const [title, setTitle] = useState("");
   const [userLogin, setUserLogin] = useState(false);
-  const backgroundColor = "#2B4076";
-  const border = "1px solid #FDEBEB";
 
   auth.onAuthStateChanged((user: any) => {
     if (user && !userLogin) {

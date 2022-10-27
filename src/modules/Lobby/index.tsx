@@ -129,9 +129,6 @@ export default function Lobby(props: LobbyProps) {
               color: "#FFFFFF",
             },
             ".mantine-TextInput-input": {
-              // fontWeight: 600,
-              // fontSize: "12px",
-              // lineHeight: "155%",
               color: "white",
               backgroundColor: "rgba(255, 255, 255, 0)",
               width: "279px",
@@ -142,11 +139,10 @@ export default function Lobby(props: LobbyProps) {
         <CopyButton value={inviteLink}>
           {({ copied, copy }) => (
             <Button
-              //color={copied ? "grey" : "black"}
               size="md"
               radius="lg"
               onClick={copy}
-              style={{ backgroundColor: copied ? "grey" : "grey" }}
+              style={{ backgroundColor: copied ? "black" : "grey" }}
             >
               {copied ? "Copied url" : "Copy url"}
             </Button>
@@ -164,62 +160,6 @@ export default function Lobby(props: LobbyProps) {
           source={singleChat.author.photoURL}
         />
       ))}
-      {/* <div
-        style={{
-          // display: status == "JOINED" ? "flex" : "none",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-      <TextInput
-        value={content}
-        onChange={(event) => setContent(event.currentTarget.value)}
-        placeholder="add text"
-        radius="lg"
-        style={{
-          height: "33px",
-          width: "303px",
-        }}
-        sx={{
-          ".mantine-TextInput-label": {
-            fontWeight: 600,
-            fontSize: "12px",
-            lineHeight: "155%",
-            color: "#FFFFFF",
-          },
-          ".mantine-TextInput-input": {
-            // fontWeight: 600,
-            // fontSize: "12px",
-            // lineHeight: "155%",
-            color: "white",
-            backgroundColor: "rgba(255, 255, 255, 0)",
-            width: "279px",
-            height: "30px",
-          },
-          ".mantine-TextInput-root": {
-            color: "white",
-          },
-          "	.mantine-TextInput-wrapper": {
-            width: "279px",
-          },
-        }}
-        rightSection={
-          <ActionIcon
-            onClick={handleNewStatus}
-            size="lg"
-            radius="md"
-            style={{
-              // display: status == "JOINED" ? "flex" : "none",
-              marginBottom: "4px",
-              marginTop: "5px",
-              marginRight: "5px",
-              color: "white",
-            }}
-          >
-            <TbSend size={20} />
-          </ActionIcon>
-        }
-      /></div> */}
       <InputMessage
         show={status == "JOINED"}
         postId={postId}

@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           background: "linear-gradient(340deg, #2B5876 0%, #4E4376 100%)",
           paddingTop: "55px",
           minHeight: "100vh",
+          paddingBottom: "30px",
         }}
       >
         <Component {...pageProps} />
