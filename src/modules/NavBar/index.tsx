@@ -7,6 +7,7 @@ import UserProfile from "./UserProfile";
 import { auth } from "../../config/firebase-config";
 import axios from "axios";
 import Link from "next/link";
+import { signOut } from "firebase/auth";
 
 export interface userDTO {
   displayName: string;
@@ -36,6 +37,7 @@ export default function NavBar() {
         }
       }
     } catch (err) {
+      console.log("error in fetch");
       console.log(err);
     }
   });

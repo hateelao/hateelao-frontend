@@ -82,12 +82,11 @@ export function AuthPage(props: PaperProps) {
         );
       };
 
-      createNewUser();
+      await createNewUser();
       alert("Register Success");
-      toggle();
-      setTimeout((location.href = "/"), 500);
-      // location.href = "/";
+      location.href = "/";
     } catch (err) {
+      alert("user already exists");
       console.log(err);
     }
   };
@@ -120,12 +119,27 @@ export function AuthPage(props: PaperProps) {
     await signOut(auth);
   };
 
-  const facebookLogin = () => {
+  const facebookLogin = async () => {
     signInWithPopup(auth, facebookProvider)
       .then((result) => {
         const user = result.user;
         const credential = FacebookAuthProvider.credentialFromResult(result);
-        location.href = "/";
+
+        const newUser = {
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          firebaseId: user.uid,
+        };
+        console.log(newUser);
+        const createNewUser = async () => {
+          const res = await axios.post(
+            `https://hateelao-api.up.railway.app/users`,
+            newUser
+          );
+        };
+        createNewUser().then(() => {
+          location.href = "/";
+        });
       })
       .catch((error) => {
         // Handle Errors here.
@@ -142,7 +156,22 @@ export function AuthPage(props: PaperProps) {
       .then((result) => {
         const user = result.user;
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        location.href = "/";
+
+        const newUser = {
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          firebaseId: user.uid,
+        };
+        console.log(newUser);
+        const createNewUser = async () => {
+          const res = await axios.post(
+            `https://hateelao-api.up.railway.app/users`,
+            newUser
+          );
+        };
+        createNewUser().then(() => {
+          location.href = "/";
+        });
       })
       .catch((error) => {
         // Handle Errors here.
