@@ -12,6 +12,7 @@ export default function InputMessage(props: InputMessageProps) {
   const { show, postId, firebaseId } = props;
   const [message, setMessage] = useState("");
   async function handleNewStatus() {
+    if (message == "") return;
     await axios.patch(`https://hateelao-api.up.railway.app/lobbies/${postId}`, {
       authorFirebaseId: firebaseId,
       content: message,
@@ -42,14 +43,14 @@ export default function InputMessage(props: InputMessageProps) {
           // lineHeight: "155%",
           color: "white",
           backgroundColor: "rgba(255, 255, 255, 0)",
-          width: "279px",
+          width: "303px",
           height: "30px",
         },
         ".mantine-TextInput-root": {
           color: "white",
         },
         "	.mantine-TextInput-wrapper": {
-          width: "279px",
+          width: "303px",
         },
       }}
       rightSection={

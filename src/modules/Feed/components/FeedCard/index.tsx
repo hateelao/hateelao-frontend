@@ -1,4 +1,5 @@
 import { Center, Image, Text } from "@mantine/core";
+import { useState } from "react";
 import { PostDTO } from "../../types";
 import { position } from "./const";
 
@@ -6,13 +7,20 @@ interface FeedCardProps {
   post: PostDTO;
   isLobby?: boolean;
 }
-
+interface UserDTO {
+  userId: string;
+  displayName: string;
+  photoURL: string;
+  firebaseId: string;
+}
 export default function FeedCard(props: FeedCardProps) {
   const { post, isLobby } = props;
   const scale = isLobby ? 1 : post.partySize / 8 + 0.2;
   const users = post.users;
   if (users.length < post.partySize) {
-    for (let i = 0; i < post.partySize - 1 - users.length; i++) {
+    let userLen = users.length;
+    if (users[0] == undefined) userLen = 0;
+    for (let i = 0; i < post.partySize - 1 - userLen; i++) {
       users.push({
         userId: "",
         displayName: "",
@@ -94,7 +102,7 @@ export default function FeedCard(props: FeedCardProps) {
           alt={`avatar of ${post.owner.displayName}`}
         />
       </div>
-      {post.users.map((user, index) => (
+      {users.map((user, index) => (
         <Image
           height={50}
           width={50}

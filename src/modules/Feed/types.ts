@@ -6,7 +6,7 @@ export interface PostDTO {
   pendingUsers: UserDTO[];
   owner: UserDTO;
 }
-interface UserDTO {
+export interface UserDTO {
   userId: string;
   displayName: string;
   photoURL: string;

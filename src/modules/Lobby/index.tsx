@@ -171,7 +171,7 @@ export default function Lobby(props: LobbyProps) {
         size="xl"
         compact
         style={{
-          display: status == "JOINED" ? "none" : "flex",
+          display: status == "JOINED" || firebaseId == "" ? "none" : "flex",
           width: "100px",
           height: "100px",
           borderRadius: "50%",

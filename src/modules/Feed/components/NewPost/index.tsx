@@ -14,7 +14,7 @@ interface NewPostProps {
 }
 export default function NewPost() {
   const [expand, setExpand] = useState(true);
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
   const [title, setTitle] = useState("");
   const [userLogin, setUserLogin] = useState(false);
 
@@ -25,14 +25,18 @@ export default function NewPost() {
     }
   });
   async function handleNewPost() {
-    if (title) {
-      const firebaseId = auth.currentUser?.uid;
+    const firebaseId = auth.currentUser?.uid;
+    console.log(title);
+    console.log(value + 2);
+    console.log(firebaseId);
+    if (title && firebaseId) {
       setExpand(!expand);
       await axios.post("https://hateelao-api.up.railway.app/posts", {
         title: title,
         partySize: value + 2,
-        ownerId: { firebaseId },
+        ownerFirebaseId: firebaseId,
       });
+      location.reload();
     }
   }
   return (

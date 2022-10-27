@@ -65,8 +65,21 @@ export default function Dashboard(props: DashboardProps) {
       {data.map((singlePost) => (
         <FeedCard key={singlePost.postId} post={singlePost} isLobby></FeedCard>
       ))}
-      <div style={{ display: !userLogin ? "flex" : "none" }}>
-        <Link href="/auth">Please Login</Link>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+          // backgroundColor: "rgba(255, 255, 255, 0.1)",
+          color: "white",
+          //fontSize: "20px",
+        }}
+      >
+        <Link href="/auth" style={{ color: "white" }}>
+          Please Login
+        </Link>
       </div>
     </div>
   );
