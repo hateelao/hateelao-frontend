@@ -83,8 +83,9 @@ export function AuthPage(props: PaperProps) {
       };
 
       createNewUser();
-
-      location.href = "/";
+      alert("Register Success");
+      toggle();
+      // location.href = "/";
     } catch (err) {
       console.log(err);
     }
